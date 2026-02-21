@@ -1,0 +1,15 @@
+# 共用
+beautifulsoup4>=4.12
+requests>=2.31
+jinja2>=3.1
+python-dotenv>=1.0
+
+# 日报工具
+feedparser>=6.0
+
+# 研究工具
+matplotlib>=3.8
+rich>=13.0
+
+# 搜索引擎（按需安装一个即可，ddgs 为免费备选）
+ddgs>=7.0

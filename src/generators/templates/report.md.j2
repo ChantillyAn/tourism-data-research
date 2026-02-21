@@ -1,0 +1,53 @@
+# {{ title }}
+
+> 生成时间：{{ generated_at }}
+{% if query %}
+> 研究查询：{{ query }}
+{% endif %}
+
+---
+
+## 摘要
+
+{{ summary }}
+
+{% for section in sections %}
+## {{ section.heading }}
+
+{{ section.content }}
+
+{% if section.key_data %}
+| 指标 | 数值 | 变化 | 时期 | 来源 |
+|------|------|------|------|------|
+{% for d in section.key_data %}
+| {{ d.indicator }} | {{ d.value }} | {{ d.comparison or "—" }} | {{ d.period or "—" }} | {{ d.source or "—" }} |
+{% endfor %}
+{% endif %}
+
+{% endfor %}
+{% if charts %}
+## 图表
+
+{% for chart in charts %}
+### {{ chart.title }}
+
+![{{ chart.title }}](charts/chart_{{ loop.index }}.png)
+
+{% endfor %}
+{% endif %}
+{% if limitations %}
+## 数据说明
+
+{{ limitations }}
+
+{% endif %}
+## 来源
+
+{% for src in sources %}
+{{ loop.index }}. [{{ src.title }}]({{ src.url }}){% if src.reliability %} ({{ src.reliability }}){% endif %}
+
+{% endfor %}
+
+---
+
+*本报告由文旅数据研究工具自动生成，数据来源于公开信息，仅供参考。*

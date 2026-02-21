@@ -1,0 +1,28 @@
+# 文旅早知道 · {{ date }}
+
+{% if policies %}
+## 📋 政策动态
+{% for item in policies %}
+- [{{ item.province or '全国' }}] {{ item.summary }}（来源：{{ item.source }}）
+{% endfor %}
+{% endif %}
+{% if data_points %}
+## 📊 数据快报
+{% for item in data_points %}
+- {{ item.summary }}{% if item.key_numbers %}（{{ item.key_numbers }}）{% endif %}（来源：{{ item.source }}）
+{% endfor %}
+{% endif %}
+{% if hot_topics %}
+## 🔥 今日热点
+{% for item in hot_topics %}
+- {{ item.summary }}（来源：{{ item.source }}）
+{% endfor %}
+{% endif %}
+{% if not policies and not data_points and not hot_topics %}
+今日无重大行业更新。
+
+> 💡 明日关注：文旅部数据服务平台通常在每月15-20日更新上月统计数据。
+{% endif %}
+
+---
+数据来源：各省文旅厅官网、行业媒体公众号
